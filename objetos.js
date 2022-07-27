@@ -129,3 +129,20 @@ console.log(
 // ? Agora se quisermos dividir nosso objeto em chave e valor, podemos usar o entries() EX:
 
 console.log("Dividindo chave e valor:", Object.entries(produto));
+
+// Todos os objetos possuem uma propriedade prototype na qual o javascript ja se encarrega de fazer referencia, caso nos precisemos criar uma função construtora para nossa aplicação mas ela tem alguns metodos que podem deixar a aplicação lente se formos usar ela para criar varios outros objetos, nos podemos usar o prototype para fazer com que todas os objetos criados a partir da nossa função construtora possua aquela metodo sem realmente precisar carregar o metodo dentro de cada objeto que criarmos EX:
+
+const Pessoa = function (nome, sobrenome) {
+  this.nome = nome;
+  this.sobrenome = sobrenome;
+};
+
+Pessoa.prototype.nomeCompleto = function () {
+  return `${this.nome} ${this.sobrenome}`;
+};
+
+const lucas = new Pessoa("Lucas", "Ribeiro");
+const leonardo = new Pessoa("Leonardo", "Ribeiro");
+
+console.log("usando o prototype 1", lucas.nomeCompleto());
+console.log("usando o prototype 2", leonardo.nomeCompleto());
